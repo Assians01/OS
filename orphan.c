@@ -25,7 +25,11 @@ int main() {
     return 0;
 }
 
-================OUTPUT=======================
-Parent process (PID 1826) is running with parent(PID 1604).
-Child process (PID 1827) is running with parent(PID 1826).
-~$ Child process (PID 1827) is done with parent(PID 1).
+
+
+
+
+/* an orphan process is a child process that continues to execute after its parent process has terminated. When a parent process has created a child and
+then exits without waiting for the child to complete the child becomes an orphan. In the output the parent prints the PID and terminates. The child process 
+prints the PID simulates some work with sleep(10) and then prints the message "child process is done". This shows that the child process continues to execute 
+after parent process has exit. */
