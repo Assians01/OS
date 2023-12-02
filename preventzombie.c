@@ -5,29 +5,28 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-void main(int argc, char* argv []) {
-printf("hello world my pid is %d\n", (int)getpid());
-int rc= fork();
-
-
-
-if (rc<0)
-{
-    fprintf (stderr, "fork failed\n");
-    exit(1);
+int main() {
+    int pid = fork();
+    if(pid<0){
+        printf("Fork Failed");
+    }
+    else if(pid == 0){
+        printf("Child process is running with PID %d\n",getpid());
+        sleep(5);
+        printf("Child process is done\n");
+    }
+    else{
+        printf("Parent process is running with PID %d\n",getpid());
+        int status;
+        wait( status);
+        printf("Parent process is done");
+    }
+    return 0;
 }
 
-else if (rc == 0)
-{
-    printf ("hello, i am child, my pid is %d\n",(int)getpid());
-    sleep(20);
-}
 
-else
-{
-    int wc = wait(NULL);
-    printf ("hello i am the parent of pid %d and my own pid is %d\n",rc,(int)getpid());
-    sleep(60);
-}
-    
-}
+
+
+
+/* A way to avoid creating zombie processes is to use the wait() system call in the parent process to collect termination status of child process. 
+By doing this the parent process ensures that the child process is removed from process table once it has completed its execution */ 
