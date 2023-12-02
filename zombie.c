@@ -24,3 +24,9 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+/* A zombie process is a terminated process that has completed its execution but still has an entry in process table */
